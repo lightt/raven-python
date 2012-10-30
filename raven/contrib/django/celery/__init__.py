@@ -25,11 +25,11 @@ class CeleryClient(CeleryMixin, DjangoClient):
         return send_raw.delay(*args, **kwargs)
 
 
-@task(routing_key='sentry')
+@task #(routing_key='sentry')
 def send_raw_integrated(kwargs):
     super(DjangoClient, get_client()).send_integrated(kwargs)
 
 
-@task(routing_key='sentry')
+@task #(routing_key='sentry')
 def send_raw(*args, **kwargs):
     super(DjangoClient, get_client()).send_encoded(*args, **kwargs)
